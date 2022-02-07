@@ -1,11 +1,18 @@
 import React, { useState, Fragment } from "react";
 import Item from "../components/Item";
 import { useAddHero, useDeleteHero, useFetchHero } from "../hook/hook";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  increment,
+  decrement,
+  incrementByAmount,
+  selectCount,
+} from "../store/counter";
 
 const HeroStyle = styled.div`
   width: 100%;
-  height: 12vh;
+  height: 15vh;
   font-size: 1.5vw;
   background-color: ${(props) => props.color};
   color: white;
@@ -14,6 +21,12 @@ const HeroStyle = styled.div`
   align-items: center;
   border-radius: 2vw;
   margin: 1vw;
+  justify-content: center;
+  ${(props) =>
+    props.myTheme &&
+    css`
+      color: white;
+    `}
 `;
 
 const InputFormStyle = styled.div`
@@ -42,24 +55,26 @@ function Home() {
   const [skill, setSkill] = useState("");
   const { isLoading, error, data, isFetching, refetch } = useFetchHero();
 
-  const { mutate: createHero } = useAddHero(refetch);
+  const { isLoading: creatingHero, mutate: createHero } = useAddHero(refetch);
   const { mutate: removeHero } = useDeleteHero(refetch);
 
   const handleChangeName = ({ target: { value } }) => setName(value);
   const handleChangeSkill = ({ target: { value } }) => setSkill(value);
   const handleSubmit = () => createHero({ name: name, skill: skill });
-  const handleDelete = (id) => {
-    removeHero(id);
-  }; //삭제기능 추가
-  const handleChangeColor = () => {
-    colorChecked === true ? setColorChecked(false) : setColorChecked(true);
-  };
+  const handleDelete = (id) => removeHero(id); //삭제기능 추가
+  const handleChangeColor = () => setColorChecked((prev) => !prev);
+  // colorChecked === true ? setColorChecked(false) : setColorChecked(true);
+
+  const count = useSelector(selectCount);
+  const dispatch = useDispatch();
+  console.log(count); //왜 counter 값이 바뀔 때 마다 실행될까?
+  //컴포넌트가 재랜더링되면 새로운 쿼리가 만들어지면서 리패칭이 일어나야 하는걸로 알고있음, Dispatch를 통해 컴포넌트의 상태값을 증가시키면 컴포넌트가 재랜더링 될텐데 devTool에서 리패칭이 일어나지 않는 이유는 무엇일까?
+
   //if (isLoading) return "Loading...";
   //if (error) return "An error has occurred: " + error.message;
   return (
     <>
       <h2 id="title">Heroes</h2>
-
       <InputFormStyle>
         <Fragment>
           <input
@@ -85,7 +100,7 @@ function Home() {
             onClick={handleSubmit}
             className="submit_button"
           >
-            새로운 영웅 추가
+            {creatingHero ? "영웅 추가중" : "새로운 영웅 생성"}
           </button>
           <button
             type="button"
@@ -101,8 +116,19 @@ function Home() {
           <div>loading!!</div>
         ) : (
           data.map((hero) => (
-            <HeroStyle color={colorChecked ? "black" : "gray"}>
-              <Item key={hero.id} hero={hero} handleDelete={handleDelete} />
+            <HeroStyle
+              key={hero.id}
+              color={colorChecked ? "black" : "gray"}
+              myTheme
+            >
+              <Item
+                key={hero.id}
+                hero={hero}
+                handleDelete={handleDelete}
+                energy={count}
+                dispatch={dispatch}
+                increment={increment}
+              />
             </HeroStyle>
           )) //key값으로 index를 쓰면 성능이 떨어질 수 있으니 다른걸 사용하는게 좋음.
         )}

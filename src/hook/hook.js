@@ -1,12 +1,12 @@
 import { useQuery, useMutation, useQueryClient } from "react-query";
 import axios from "axios";
 
-const addHero = (newHero) => {
-  axios.post("http://localhost:4000/hero", newHero);
+const addHero = async (newHero) => {
+  await axios.post("http://localhost:4000/hero", newHero);
 };
 
-const deleteHero = (id) => {
-  axios.delete(`http://localhost:4000/hero/${id}`);
+const deleteHero = async (id) => {
+  await axios.delete(`http://localhost:4000/hero/${id}`);
 };
 
 //   useQuery를 사용하면, 최상위에서 호출해야된다는 훅의 규칙에 위배되기 때문에

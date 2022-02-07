@@ -14,6 +14,7 @@ a:hover {
   color: white;
   background-color: gray;
   margin: 0.4vw;
+  justify-content: center;
 }
 
 .inputStyle {
