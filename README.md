@@ -12,13 +12,13 @@ npm start
 
 
 ### 설치 라이브러리
-   "@testing-library/jest-dom": "^5.16.1",<br>
-    "@testing-library/react": "^12.1.2",<br>
-    "@testing-library/user-event": "^13.5.0",<br>
-    "axios": "^0.25.0",<br>
-    "react": "^17.0.2",<br>
-    "react-dom": "^17.0.2",<br>
-    "react-query": "^3.34.8",<br>
-    "react-scripts": "5.0.0",<br>
-    "styled-components": "^5.3.3",<br>
-    "web-vitals": "^2.1.3"<br>
+    "@testing-library/jest-dom": "^5.16.1",
+    "@testing-library/react": "^12.1.2",
+    "@testing-library/user-event": "^13.5.0",
+    "axios": "^0.25.0",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-query": "^3.34.8",
+    "react-scripts": "5.0.0",
+    "styled-components": "^5.3.3",
+    "web-vitals": "^2.1.3"
