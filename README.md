@@ -1,13 +1,14 @@
-# react-query & styled-components tutorial
+# react-query tutorial
 
 리액트 쿼리 튜토리얼 코드입니다.
 
-## json-seever 실행
+## json-sever 실행
 
-json-server --watch dummyDB.json --port 4000
+####json-server --watch dummyDB.json --port 4000
 
 ### react 실행 
-npm start
+####npm i
+####npm start
 
 
 
