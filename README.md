@@ -4,11 +4,11 @@
 
 ## json-sever 실행
 
-####json-server --watch dummyDB.json --port 4000
+json-server --watch dummyDB.json --port 4000
 
 ### react 실행 
-####npm i
-####npm start
+npm i<br/>
+npm start
 
 
 
