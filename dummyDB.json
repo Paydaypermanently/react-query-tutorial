@@ -1,16 +1,6 @@
 {
   "hero": [
     {
-      "name": "이춘호",
-      "skill": "123",
-      "id": 1
-    },
-    {
-      "name": "ㄴㄴ",
-      "skill": "ㅇㅇ",
-      "id": 2
-    },
-    {
       "name": "ㄴㄴ",
       "skill": "ㅇㅇ",
       "id": 3
@@ -19,6 +9,16 @@
       "name": "추노추노1",
       "skill": "ㄴㄴ",
       "id": 4
+    },
+    {
+      "name": "sds",
+      "skill": "sds",
+      "id": 5
+    },
+    {
+      "name": "sds",
+      "skill": "sds",
+      "id": 6
     }
   ]
 }
